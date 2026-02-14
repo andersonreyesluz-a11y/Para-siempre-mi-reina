@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para mi Roxi ✨</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:'Cinzel', serif;
+    background: radial-gradient(circle at top, #1a1a2e, #0f0f1b);
+    color:#f5e6c8;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+.stars{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity:0.3;
+    z-index:-2;
+}
+
+.candle{
+    position:absolute;
+    width:20px;
+    height:40px;
+    border-radius:5px;
+    animation: float 6s infinite ease-in-out;
+}
+
+.candle.white{
+    background:#fff3c4;
+    box-shadow:0 0 15px rgba(255,223,100,0.9);
+}
+
+.candle.black{
+    background:#222;
+    box-shadow:0 0 15px rgba(255,255,255,0.6);
+}
+
+.candle::before{
+    content:'';
+    position:absolute;
+    top:-10px;
+    left:50%;
+    transform:translateX(-50%);
+    width:8px;
+    height:10px;
+    background:orange;
+    border-radius:50%;
+    box-shadow:0 0 10px orange;
+}
+
+@keyframes float{
+    0%{ transform:translateY(0px); }
+    50%{ transform:translateY(-25px); }
+    100%{ transform:translateY(0px); }
+}
+
+@keyframes fadeIn{
+    from{ opacity:0; transform:translateY(20px);}
+    to{ opacity:1; transform:translateY(0);}
+}
+
+.screen{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+button{
+    padding:15px 30px;
+    font-size:1em;
+    border-radius:30px;
+    border:none;
+    cursor:pointer;
+    margin-top:20px;
+    background:#d4af37;
+    color:#1a1a2e;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+.hidden{
+    display:none;
+}
+
+.container{
+    padding:40px 20px;
+    animation:fadeIn 2s ease;
+}
+
+.counter{
+    margin:30px auto;
+    padding:20px;
+    max-width:400px;
+    background:rgba(255,255,255,0.05);
+    border-radius:20px;
+    border:1px solid #d4af37;
+}
+
+.parchment{
+    background:linear-gradient(#f5e6c8,#e8d3a3);
+    color:#1a1a2e;
+    padding:30px;
+    border-radius:15px;
+    max-width:600px;
+    margin:20px auto;
+}
+
+.gallery{
+    margin-top:40px;
+}
+
+.slider{
+    display:flex;
+    overflow-x:auto;
+    gap:15px;
+    padding:10px;
+    scroll-behavior:smooth;
+}
+
+.slider img{
+    height:300px;
+    border-radius:20px;
+    box-shadow:0 0 20px rgba(212,175,55,0.6);
+    transition:0.4s;
+}
+
+.slider img:hover{
+    transform:scale(1.05);
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<script>
+for(let i=0;i<18;i++){
+    let candle=document.createElement("div");
+    candle.className="candle " + (Math.random() > 0.5 ? "white" : "black");
+    candle.style.left=Math.random()*100+"%";
+    candle.style.top=Math.random()*100+"%";
+    candle.style.animationDuration=(4+Math.random()*4)+"s";
+    document.body.appendChild(candle);
+}
+</script>
+
+<div id="intro" class="screen">
+    <h1>✨ Roxi ✨</h1>
+    <p>
+    Como los Merodeadores: "No importa lo que el mapa diga, siempre encontraré tu huella.
+    Eres mi compañero de travesuras y lealtad. ¡Feliz día!"
+    </p>
+    <button onclick="enter()">Abrir pergamino mágico 🪄</button>
+</div>
+
+<div id="mainContent" class="hidden">
+<div class="container">
+
+    <h1>Feliz San Valentín ❤️</h1>
+
+    <div class="parchment">
+        <p>
+        Desde el 25 de noviembre de 2019 comenzó nuestra historia mágica…
+        Y desde entonces, cada día contigo ha sido un hechizo distinto.
+        </p>
+
+        <p>
+        No necesito varitas ni encantamientos,
+        porque tu sonrisa es mi magia favorita,
+        tu abrazo es mi lugar seguro,
+        y tu amor es el conjuro más poderoso que existe.
+        </p>
+
+        <p>
+        Gracias por ser mi compañera de aventuras,
+        mi mejor amiga,
+        mi hogar,
+        y el amor más bonito que la vida me pudo regalar.
+        </p>
+
+        <p><strong>Siempre tú. Siempre nosotros. ❤️</strong></p>
+    </div>
+
+    <div class="counter" id="counter"></div>
+
+    <div class="gallery">
+        <h2>Nuestros Recuerdos ✨</h2>
+        <div class="slider" id="slider"></div>
+    </div>
+
+    <button onclick="sorpresa()">Hechizo secreto 💌</button>
+
+</div>
+</div>
+
+<!-- 🎵 Música local -->
+<audio id="music" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function enter(){
+    document.getElementById("intro").style.display="none";
+    document.getElementById("mainContent").classList.remove("hidden");
+    document.getElementById("music").play();
+}
+
+/* 📸 Galería ilimitada */
+const totalFotos = 30; // CAMBIA ESTE NÚMERO según tus fotos
+const slider = document.getElementById("slider");
+
+for(let i=1;i<=totalFotos;i++){
+    const img = document.createElement("img");
+    img.src = "foto"+i+".jpg";
+    slider.appendChild(img);
+}
+
+const startDate = new Date("2019-11-25T00:00:00");
+
+function updateCounter(){
+    const now = new Date();
+    const diff = now - startDate;
+
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff / (1000*60*60)) % 24);
+    const minutes = Math.floor((diff / (1000*60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("counter").innerHTML =
+        "<h2>Tiempo de nuestra magia juntos:</h2>" +
+        days + " días ✨<br>" +
+        hours + " horas 🕯️<br>" +
+        minutes + " minutos ⏳<br>" +
+        seconds + " segundos ❤️";
+}
+
+setInterval(updateCounter,1000);
+updateCounter();
+
+function sorpresa(){
+    const mensaje = document.createElement("div");
+    mensaje.className = "parchment";
+    mensaje.style.animation = "fadeIn 2s ease";
+
+    mensaje.innerHTML = `
+        <h2>Hechizo Revelado ✨</h2>
+        <p>
+        De todos los miedos posibles en este mundo mágico…
+        solo hay uno que me paraliza.
+        </p>
+        <p style="font-size:1.3em; font-weight:bold;">
+        Mi boggart siempre será perderte.
+        </p>
+        <p style="font-size:1.6em; color:#8b0000; font-weight:bold;">
+        TE AMO ❤️
+        </p>
+    `;
+
+    document.querySelector(".container").appendChild(mensaje);
+}
+</script>
+
+</body>
+</html>
